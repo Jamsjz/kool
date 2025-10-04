@@ -1,7 +1,7 @@
 from typing import BinaryIO, Literal
 from fastapi import HTTPException, status
 from lxml import etree
-import cairosvg
+import nocairosvg as cairosvg
 import io
 import re
 from PIL import Image as im
