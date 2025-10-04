@@ -29,6 +29,8 @@ function handleSubmit(event) {
 
 		handleImage(file)
 		handleDownloadLink(file)
+	}).catch(error =>{
+		$("#answer").html("Invalid Server Response!")
 	});
 	event.preventDefault();
 }
