@@ -9,19 +9,17 @@ from fastapi import (
     UploadFile,
     status,
 )
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from svg import resize_image
 from requests_toolbelt import MultipartEncoder
 
 app = FastAPI()
 from fastapi.staticfiles import StaticFiles
 
-app.mount("/public", StaticFiles(directory="static"), name="static")
-
 
 @app.get("/")
 def home():
-    return FileResponse("public/index.html")
+    return RedirectResponse("/index.html")
 
 
 @app.post("/api/image/convert")
