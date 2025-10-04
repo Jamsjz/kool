@@ -21,7 +21,7 @@ app.mount("/public", StaticFiles(directory="public"), name="static")
 
 @app.get("/")
 def home():
-    return FileResponse("index.html")
+    return FileResponse("public/index.html")
 
 
 @app.post("/api/image/convert")
