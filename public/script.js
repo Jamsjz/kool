@@ -1,6 +1,7 @@
 const SVG = "svg+png";
 const PNG = "png";
-const BackendURL = "https://kool-backend.vercel.app/"
+const BackendURL = "/api";
+const ImageConvertURL = BackendURL+"/image/convert"
 
 function handleDownloadLink(file) {
 	$("#download-link").attr("href", URL.createObjectURL(file));
@@ -15,7 +16,7 @@ function handleImage(file) {
 function handleSubmit(event) {
 	form = event.target;
 	formdata = new FormData(form);
-	fetch(BackendURL, {
+	fetch(ImageConvertURL, {
 		method: "POST",
 		body: formdata
 	}).then((res) => {

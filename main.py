@@ -1,32 +1,30 @@
-import io
-from typing import Annotated, Literal, Union
+from typing import Literal
 import mimetypes
 from fastapi import (
     FastAPI,
     File,
     Form,
     HTTPException,
-    Request,
     Response,
     UploadFile,
     status,
 )
-from fastapi.middleware.cors import CORSMiddleware
-from PIL import Image as im
-from starlette.status import HTTP_422_UNPROCESSABLE_CONTENT
-from svg import resize_image, resize_svg
+from fastapi.responses import FileResponse
+from svg import resize_image
 from requests_toolbelt import MultipartEncoder
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins="*",
-    allow_methods="*",
-    allow_headers="*",
-)
+from fastapi.staticfiles import StaticFiles
+
+app.mount("/public", StaticFiles(directory="public"), name="static")
 
 
-@app.post("/")
+@app.get("/")
+def home():
+    return FileResponse("index.html")
+
+
+@app.post("/api/image/convert")
 async def root(
     scale: float = Form(...),
     image: UploadFile = File(...),
