@@ -16,7 +16,7 @@ from requests_toolbelt import MultipartEncoder
 app = FastAPI()
 from fastapi.staticfiles import StaticFiles
 
-app.mount("/public", StaticFiles(directory="public"), name="static")
+app.mount("/public", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/")
